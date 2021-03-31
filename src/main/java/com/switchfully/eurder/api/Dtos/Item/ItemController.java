@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/items")
@@ -33,6 +34,15 @@ public class ItemController {
         return itemMapper.mapToDtoList(itemService.getItems());
     }
 
+    @GetMapping(path = "/{levelOfSupply}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ItemSupplyDto> getItemsSupply(@RequestHeader("Authorization") String userId,@PathVariable String levelOfSupply) {
+        logger.info("Received a request to display items supply by "+userId);
+        ValidationUtil.hasAdminRights(userId,customerService);
+
+        return itemMapper.mapToDtoListOfItemsSupply(itemService.getItemsWithLevelOfSupply(levelOfSupply));
+    }
+
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
     public void createItem(@RequestBody CreateItemDTO createItemDTO, @RequestHeader("Authorization") String userId) {
@@ -47,6 +57,6 @@ public class ItemController {
         logger.info("Received a request to update an item with id : "+idOfItem+" from : "+idOfUser);
         ValidationUtil.hasAdminRights(idOfUser,customerService);
         ValidationUtil.doesItemExist(idOfItem,itemService);
-        itemService.updateItem(itemMapper.mapCreateItemDTOToItem(createItemDTO));
+        itemService.updateItem(itemMapper.mapCreateItemDTOToItem(createItemDTO), UUID.fromString(idOfItem));
     }
 }

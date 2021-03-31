@@ -35,9 +35,14 @@ public class ItemRepository {
         return itemDatabase.containsKey(id);
     }
 
-    public void updateItem(Item item) {
+    public void updateItem(Item item,UUID id) {
+        itemDatabase.remove(id);
         itemDatabase.put(item.getUuid(),item);
     }
+    public Item getItemFromId(UUID id){
+        return itemDatabase.get(id);
+    }
+
     /*
     public boolean doesItemExist(UUID id) {
         return itemDatabase.containsKey(id);

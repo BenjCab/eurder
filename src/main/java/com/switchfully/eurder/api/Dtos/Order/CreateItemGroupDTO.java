@@ -2,17 +2,19 @@ package com.switchfully.eurder.api.Dtos.Order;
 
 import com.switchfully.eurder.domain.Item;
 
+import java.util.UUID;
+
 public class CreateItemGroupDTO {
-    private final Item item;
+    private final UUID itemID;
     private final int amount;
 
-    public CreateItemGroupDTO(Item item, int amount) {
-        this.item = item;
+    public CreateItemGroupDTO(UUID itemID, int amount) {
+        this.itemID = itemID;
         this.amount = amount;
     }
 
-    public Item getItem() {
-        return item;
+    public UUID getItemID() {
+        return itemID;
     }
 
     public int getAmount() {

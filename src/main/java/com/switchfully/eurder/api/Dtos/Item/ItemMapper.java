@@ -20,10 +20,18 @@ public class ItemMapper {
     }
 
     private ItemDto mapToDto(Item item) {
-        return new ItemDto(item.getName(), item.getDescription(), item.getPrice(), item.getAmountInStock());
+        return new ItemDto(item.getName(), item.getDescription(), item.getPrice(), item.getAmountInStock(), item.getUuid());
     }
 
     public Item mapCreateItemDTOToItem(CreateItemDTO createItemDTO) {
         return new Item(createItemDTO.getName(), createItemDTO.getDescription(), createItemDTO.getPrice(), createItemDTO.getAmountInStock());
+    }
+
+    public List<ItemSupplyDto> mapToDtoListOfItemsSupply(List<Item> items) {
+        return items.stream().map(this::mapToSupplyDto).collect(Collectors.toList());
+    }
+
+    private ItemSupplyDto mapToSupplyDto(Item item) {
+        return new ItemSupplyDto(item.getName(), item.getDescription(), item.getPrice(), item.getAmountInStock(), item.getUuid());
     }
 }
