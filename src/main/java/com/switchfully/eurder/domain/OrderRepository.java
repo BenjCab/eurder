@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+//THIS CLASS IS USELESS : I KEEP IT FOR POTENTIAL REFACTORING
+
 @Repository
 public class OrderRepository {
     private final Map<UUID,Order> orderDatabase;

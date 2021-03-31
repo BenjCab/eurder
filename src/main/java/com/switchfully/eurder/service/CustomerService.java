@@ -1,7 +1,8 @@
 package com.switchfully.eurder.service;
 
+import com.switchfully.eurder.domain.Order;
 import com.switchfully.eurder.domain.User;
-import com.switchfully.eurder.domain.CustomerRepository;
+import com.switchfully.eurder.domain.UserRepository;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,34 +13,38 @@ import java.util.UUID;
 
 @Service
 public class CustomerService {
-    private final CustomerRepository customerRepository;
+    private final UserRepository userRepository;
 
 
     @Autowired
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerService(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     public void addNewCustomer(User user) {
-        customerRepository.addNewCustomer(user);
+        userRepository.addNewCustomer(user);
     }
 
     public List<User> getCustomers() {
-        return customerRepository.getCustomers();
+        return userRepository.getCustomers();
     }
 
     public User getCustomer(String identifier) {
         ValidationUtil.isValidUuidFormat(identifier);
         ValidationUtil.doesUserExist(identifier,this);
         UUID id = UUID.fromString(identifier);
-        return customerRepository.getUserByID(id);
+        return userRepository.getUserByID(id);
     }
 
     public boolean doesUserExist(UUID id) {
-        return customerRepository.doesUserExist(id);
+        return userRepository.doesUserExist(id);
     }
 
     public HashMap<UUID,User> getHashmapOfUsers() {
-        return customerRepository.getHashMapOfUsers();
+        return userRepository.getHashMapOfUsers();
+    }
+
+    public void addOrderToCustomer(String id, Order order) {
+        getCustomer(id).addOrder(order);
     }
 }

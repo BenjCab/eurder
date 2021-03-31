@@ -43,6 +43,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons.platform.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.5.6</version>
+        </dependency>
     </dependencies>
 
     <build>

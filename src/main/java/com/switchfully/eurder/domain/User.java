@@ -31,6 +31,17 @@ public class User {
         role = Role.CUSTOMER;
         orders = new ArrayList<>();
     }
+    //just to create admins
+    public User(String firstName, String lastName, String email, String address, String phoneNumber, Role role, UUID uuid) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.role = role;
+        this.uuid = uuid;
+        orders = new ArrayList<>();
+    }
 
     public String getFirstName() {
         return firstName;

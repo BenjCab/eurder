@@ -16,13 +16,14 @@ public class ValidationUtil {
         UUID id = UUID.fromString(identifier);
         doesUserExist(identifier,customerService);
         if(customerService.getHashmapOfUsers().get(id).getRole()!= Role.ADMIN){
+            logger.warn("User without admin rights tried to access a restricted area.");
             throw new IllegalArgumentException("You do not have admin rights.");
         }
     }
 
     public static void isValidUuidFormat(String identifier){
-        //logger.info("Validating a UUID");
         if (identifier.length() != 36){
+            logger.warn("This is not a valid UUID : "+identifier);
             throw new IllegalArgumentException("Wrong identifier format provided");
         }
     }
@@ -30,12 +31,14 @@ public class ValidationUtil {
     public static void doesUserExist(String identifier, CustomerService customerService){
         UUID id = UUID.fromString(identifier);
         if (!customerService.doesUserExist(id)){
+            logger.warn("tried to enter an identifier that does not exist : "+identifier);
             throw new IllegalArgumentException("This identifier does not exist.");
         }
     }
 
     public static void throwExceptionIfNull(String data,String type){
         if(data == null || data.length()==0){
+            logger.warn("Tried to enter a empty/null data in a mandatory field.");
             throw new IllegalArgumentException("The "+type+" cannot be null.");
         }
     }
@@ -43,6 +46,7 @@ public class ValidationUtil {
         isValidUuidFormat(identifier);
         UUID id = UUID.fromString(identifier);
         if (!itemService.doesItemExist(id)){
+            logger.warn("Tried to access an item that does not exist : "+identifier);
             throw new IllegalArgumentException("There is no item with that ID.");
         }
     }

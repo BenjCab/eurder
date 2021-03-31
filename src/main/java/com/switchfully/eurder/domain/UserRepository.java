@@ -1,23 +1,31 @@
 package com.switchfully.eurder.domain;
 
+import com.switchfully.eurder.api.Dtos.Order.OrderController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
-public class CustomerRepository {
+public class UserRepository {
     private final HashMap<UUID, User> customerDatabase;
+    final static Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
-    public CustomerRepository() {
+    public UserRepository() {
         this.customerDatabase = new HashMap<>();
 
         //hardcoded list of clients just for the exercice
         User c1 = new User("Ben","Cab","yop@yopmail.com","22 rue des paquerettes","0454015475");
         User c2 = new User("ali","bil","pop@yopmail.com","23 rue des paquerettes","0454320001");
         User c3 = new User("roger","Henin","sop@yopmail.com","24 rue des paquerettes","0454265489");
+        UUID uuidAdmin = UUID.randomUUID();
+        logger.debug("The admin uuid for this session is :  "+uuidAdmin);
+        User admin = new User("roger","Henin","sop@yopmail.com","24 rue des paquerettes","0454265489",Role.ADMIN,uuidAdmin);
         customerDatabase.put(c1.getUuid(),c1);
         customerDatabase.put(c2.getUuid(),c2);
         customerDatabase.put(c3.getUuid(),c3);
+        customerDatabase.put(admin.getUuid(),admin);
     }
 
     public void addNewCustomer(User user) {

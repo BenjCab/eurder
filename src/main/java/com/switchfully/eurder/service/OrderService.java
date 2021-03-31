@@ -18,6 +18,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
+    //SHOULD NOT BE USED?
     public void addNewOrder(Order order){
         orderRepository.addNewOrder(order);
     }
