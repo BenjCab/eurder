@@ -36,7 +36,7 @@ public class OrderService {
             List<GetItemGroupDto> userGroupShippedToday = new ArrayList<>();
             for (Order order : user.getOrders()) {
                 for (ItemGroup itemGroup : order.getItemGroups()) {
-                    if (itemGroup.getShippingDate().compareTo(LocalDate.now()) == 0) {
+                    if (itemGroup.getShippingDate().equals(LocalDate.now().plusDays(1))) { // set to 0 for actual code, one to test
                         userGroupShippedToday.add(itemGroupMapper.mapItemGroupToGetItemGroupDto(itemGroup));
                     }
                 }
