@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public class Item {
     private final UUID uuid;
-    private String name;
-    private String description;
-    private float price;
-    private int amountInStock;
+    private final String name;
+    private final String description;
+    private final float price;
+    private final int amountInStock;
 
-    public Item(String name, String description, Float price, Integer amountInStock) {
+    public Item(UUID id,String name, String description, Float price, Integer amountInStock) {
         ValidationUtil.throwExceptionIfNull(name,"name");
         ValidationUtil.throwExceptionIfNull(description,"description");
         if (price==null || price ==0){
@@ -24,7 +24,7 @@ public class Item {
         this.description = description;
         this.price = price;
         this.amountInStock = amountInStock;
-        uuid = UUID.randomUUID();
+        uuid = id;
     }
 
     public String getName() {

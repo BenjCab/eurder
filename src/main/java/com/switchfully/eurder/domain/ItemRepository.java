@@ -13,10 +13,10 @@ public class ItemRepository {
 
         //hardcode list of items just for the exercice
 
-        Item i1 = new Item("mousePad","a beautiful mousepad",5f,80);
-        Item i2 = new Item("Screen H2L4","a large screen",505f,10);
-        Item i3 = new Item("Lamp","a beautiful lamp",9f,60);
-        Item i4 = new Item("Hdmi cable","a useful cable",6f,880);
+        Item i1 = new Item(UUID.randomUUID(),"mousepad","a beautiful mousepad",5f,80);
+        Item i2 = new Item(UUID.randomUUID(),"Screen H2L4","a large screen",505f,10);
+        Item i3 = new Item(UUID.randomUUID(),"Lamp","a beautiful lamp",9f,60);
+        Item i4 = new Item(UUID.randomUUID(),"Hdmi cable","a useful cable",6f,880);
         itemDatabase.put(i1.getUuid(),i1);
         itemDatabase.put(i2.getUuid(),i2);
         itemDatabase.put(i3.getUuid(),i3);

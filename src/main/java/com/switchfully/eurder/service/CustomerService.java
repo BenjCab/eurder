@@ -1,12 +1,11 @@
 package com.switchfully.eurder.service;
 
-import com.switchfully.eurder.domain.Order;
-import com.switchfully.eurder.domain.User;
-import com.switchfully.eurder.domain.UserRepository;
+import com.switchfully.eurder.domain.*;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -14,7 +13,6 @@ import java.util.UUID;
 @Service
 public class CustomerService {
     private final UserRepository userRepository;
-
 
     @Autowired
     public CustomerService(UserRepository userRepository) {
@@ -46,5 +44,16 @@ public class CustomerService {
 
     public void addOrderToCustomer(String id, Order order) {
         getCustomer(id).addOrder(order);
+    }
+
+    public float redoOrder(String userId, String orderId,ItemService itemService) {
+        Order oldOrder = userRepository.getUserByID(UUID.fromString(userId)).getOrderById(UUID.fromString(orderId));
+        List<ItemGroup> newItems = new ArrayList<>();
+        for(ItemGroup group : oldOrder.getItemGroups()){
+            newItems.add(new ItemGroup(itemService.getItemRepository().getItemFromId(group.getItem().getUuid()),group.getAmount()));
+        }
+        Order newOrder = new Order(newItems);
+        addOrderToCustomer(newOrder.getUuid().toString(),newOrder);
+        return newOrder.getTotalPrice();
     }
 }

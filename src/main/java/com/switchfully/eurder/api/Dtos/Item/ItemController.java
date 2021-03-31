@@ -48,7 +48,7 @@ public class ItemController {
     public void createItem(@RequestBody CreateItemDTO createItemDTO, @RequestHeader("Authorization") String userId) {
         logger.info("Received a request to create an item with name : "+createItemDTO.getName()+" from : "+userId);
         ValidationUtil.hasAdminRights(userId, customerService);
-        itemService.addNewItem(itemMapper.mapCreateItemDTOToItem(createItemDTO));
+        itemService.addNewItem(itemMapper.mapCreateItemDTOToItem(createItemDTO,UUID.randomUUID()));
     }
 
     @PutMapping(path = "/{idOfItem}", consumes = "application/json")
@@ -57,6 +57,6 @@ public class ItemController {
         logger.info("Received a request to update an item with id : "+idOfItem+" from : "+idOfUser);
         ValidationUtil.hasAdminRights(idOfUser,customerService);
         ValidationUtil.doesItemExist(idOfItem,itemService);
-        itemService.updateItem(itemMapper.mapCreateItemDTOToItem(createItemDTO), UUID.fromString(idOfItem));
+        itemService.updateItem(itemMapper.mapCreateItemDTOToItem(createItemDTO,UUID.fromString(idOfItem)), UUID.fromString(idOfItem));
     }
 }

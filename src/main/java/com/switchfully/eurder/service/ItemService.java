@@ -26,6 +26,9 @@ public class ItemService {
     public List<Item> getItems() {
         return itemRepository.getItems();
     }
+    public ItemRepository getItemRepository() {
+        return itemRepository;
+    }
 
     public boolean doesItemExist(UUID id) {
         return itemRepository.doesItemExist(id);

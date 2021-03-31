@@ -1,6 +1,7 @@
 package com.switchfully.eurder.domain;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class ItemGroup {
     private final String name;
@@ -11,7 +12,7 @@ public class ItemGroup {
 
     public ItemGroup(Item item, int amount) {
         this.name = item.getName();
-        this.item = new Item(item.getName(),item.getDescription(),item.getPrice(),item.getAmountInStock());
+        this.item = new Item(UUID.randomUUID(),item.getName(),item.getDescription(),item.getPrice(),item.getAmountInStock());
         this.amount = amount;
         if(item.getAmountInStock()>amount){
             shippingDate= LocalDate.now().plusDays(1);
