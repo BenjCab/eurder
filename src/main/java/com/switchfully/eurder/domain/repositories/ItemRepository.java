@@ -1,12 +1,13 @@
-package com.switchfully.eurder.domain;
+package com.switchfully.eurder.domain.repositories;
 
+import com.switchfully.eurder.domain.Item;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
 @Repository
 public class ItemRepository {
-    private final Map<UUID,Item> itemDatabase;
+    private final Map<UUID, Item> itemDatabase;
 
     public ItemRepository() {
         this.itemDatabase = new HashMap<>();

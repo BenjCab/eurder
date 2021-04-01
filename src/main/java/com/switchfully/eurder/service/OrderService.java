@@ -5,7 +5,7 @@ import com.switchfully.eurder.api.Dtos.Order.ItemGroupMapper;
 import com.switchfully.eurder.api.Dtos.Order.TodayShippingDto;
 import com.switchfully.eurder.domain.ItemGroup;
 import com.switchfully.eurder.domain.Order;
-import com.switchfully.eurder.domain.OrderRepository;
+import com.switchfully.eurder.domain.repositories.OrderRepository;
 import com.switchfully.eurder.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

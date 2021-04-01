@@ -1,7 +1,7 @@
 package com.switchfully.eurder.api.Dtos.Order;
 
 import com.switchfully.eurder.domain.ItemGroup;
-import com.switchfully.eurder.domain.ItemRepository;
+import com.switchfully.eurder.domain.repositories.ItemRepository;
 import com.switchfully.eurder.domain.Order;
 import org.springframework.stereotype.Component;
 

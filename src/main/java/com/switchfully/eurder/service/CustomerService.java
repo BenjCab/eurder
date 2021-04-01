@@ -1,6 +1,7 @@
 package com.switchfully.eurder.service;
 
 import com.switchfully.eurder.domain.*;
+import com.switchfully.eurder.domain.repositories.UserRepository;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

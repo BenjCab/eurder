@@ -1,5 +1,6 @@
-package com.switchfully.eurder.domain;
+package com.switchfully.eurder.domain.repositories;
 
+import com.switchfully.eurder.domain.Order;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -11,7 +12,7 @@ import java.util.UUID;
 
 @Repository
 public class OrderRepository {
-    private final Map<UUID,Order> orderDatabase;
+    private final Map<UUID, Order> orderDatabase;
 
     public OrderRepository(){
         this.orderDatabase = new HashMap<>();

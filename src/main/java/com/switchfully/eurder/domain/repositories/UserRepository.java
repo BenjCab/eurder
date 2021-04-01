@@ -1,5 +1,7 @@
-package com.switchfully.eurder.domain;
+package com.switchfully.eurder.domain.repositories;
 
+import com.switchfully.eurder.domain.Role;
+import com.switchfully.eurder.domain.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
@@ -17,7 +19,7 @@ public class UserRepository {
         User c3 = new User("roger","Henin","sop@yopmail.com","24 rue des paquerettes","0454265489");
 
         UUID uuidDummyClient = UUID.fromString("234e4567-e89b-12d3-a456-556642440000");
-        User c4 = new User("marcel","curry","lkmp@yopmail.com","29 rue des paquerettes","0654265489",Role.CUSTOMER,uuidDummyClient);
+        User c4 = new User("marcel","curry","lkmp@yopmail.com","29 rue des paquerettes","0654265489", Role.CUSTOMER,uuidDummyClient);
 
         UUID uuidAdmin = UUID.fromString("123e4567-e89b-12d3-a456-556642440000");
         User admin = new User("roger","Henin","sop@yopmail.com","24 rue des paquerettes","0454265489",Role.ADMIN,uuidAdmin);
