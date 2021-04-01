@@ -8,12 +8,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class CustomerMapper {
-    /*
-    private final CustomerService customerService;
-
-    public CustomerMapper(CustomerService customerService) {
-        this.customerService = customerService;
-    }*/
 
     public User mapCreateCustomerDtoToCustomer(CreateCustomerDto createCustomerDto){
         return new User(

@@ -1,5 +1,9 @@
-package com.switchfully.eurder.api.Dtos.Item;
+package com.switchfully.eurder.api.controller;
 
+import com.switchfully.eurder.api.Dtos.Item.CreateItemDTO;
+import com.switchfully.eurder.api.Dtos.Item.ItemDto;
+import com.switchfully.eurder.api.Dtos.Item.ItemMapper;
+import com.switchfully.eurder.api.Dtos.Item.ItemSupplyDto;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import com.switchfully.eurder.service.CustomerService;
 import com.switchfully.eurder.service.ItemService;
@@ -36,7 +40,7 @@ public class ItemController {
 
     @GetMapping(path = "/{levelOfSupply}")
     @ResponseStatus(HttpStatus.OK)
-    public List<ItemSupplyDto> getItemsSupply(@RequestHeader("Authorization") String userId,@PathVariable String levelOfSupply) {
+    public List<ItemSupplyDto> getItemsSupply(@RequestHeader("Authorization") String userId, @PathVariable String levelOfSupply) {
         logger.info("Received a request to display items supply by "+userId);
         ValidationUtil.hasAdminRights(userId,customerService);
 

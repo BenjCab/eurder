@@ -2,7 +2,6 @@ package com.switchfully.eurder.service;
 
 import com.switchfully.eurder.api.Dtos.Order.GetItemGroupDto;
 import com.switchfully.eurder.api.Dtos.Order.ItemGroupMapper;
-import com.switchfully.eurder.api.Dtos.Order.OrderMapper;
 import com.switchfully.eurder.api.Dtos.Order.TodayShippingDto;
 import com.switchfully.eurder.domain.ItemGroup;
 import com.switchfully.eurder.domain.Order;
@@ -19,10 +18,12 @@ import java.util.UUID;
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
+    private final CustomerService customerService;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, CustomerService customerService) {
         this.orderRepository = orderRepository;
+        this.customerService = customerService;
     }
 
     //SHOULD NOT BE USED?
@@ -30,7 +31,7 @@ public class OrderService {
         orderRepository.addNewOrder(order);
     }
 
-    public List<TodayShippingDto> getTodayShipping(UUID id, CustomerService customerService, ItemGroupMapper itemGroupMapper) {
+    public List<TodayShippingDto> getTodayShipping(UUID id, ItemGroupMapper itemGroupMapper) {
         List<TodayShippingDto> groupsShippedTodayByUser = new ArrayList<>();
         for (User user : customerService.getCustomers()) {
             List<GetItemGroupDto> userGroupShippedToday = new ArrayList<>();

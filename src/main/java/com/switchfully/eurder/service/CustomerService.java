@@ -13,10 +13,12 @@ import java.util.UUID;
 @Service
 public class CustomerService {
     private final UserRepository userRepository;
+    private final ItemService itemService;
 
     @Autowired
-    public CustomerService(UserRepository userRepository) {
+    public CustomerService(UserRepository userRepository, ItemService itemService) {
         this.userRepository = userRepository;
+        this.itemService = itemService;
     }
 
     public void addNewCustomer(User user) {
@@ -46,7 +48,7 @@ public class CustomerService {
         getCustomer(id).addOrder(order);
     }
 
-    public float redoOrder(String userId, String orderId,ItemService itemService) {
+    public float redoOrder(String userId, String orderId) {
         Order oldOrder = userRepository.getUserByID(UUID.fromString(userId)).getOrderById(UUID.fromString(orderId));
         List<ItemGroup> newItems = new ArrayList<>();
         for(ItemGroup group : oldOrder.getItemGroups()){

@@ -1,5 +1,6 @@
-package com.switchfully.eurder.api.Dtos.Order;
+package com.switchfully.eurder.api.controller;
 
+import com.switchfully.eurder.api.Dtos.Order.*;
 import com.switchfully.eurder.domain.Order;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import com.switchfully.eurder.service.CustomerService;
@@ -61,13 +62,13 @@ public class OrderController {
         logger.info("Received a request to reorder the order : "+orderId+" from : "+userID);
         ValidationUtil.doesUserExist(userID,customerService);
         ValidationUtil.isValidUuidFormat(orderId);
-        return customerService.redoOrder(userID,orderId,itemService);
+        return customerService.redoOrder(userID,orderId);
     }
 
     @GetMapping(path="/today")
     @ResponseStatus(HttpStatus.OK)
     public List<TodayShippingDto> seeTodayOrders(@RequestHeader ("Authorization") String userId){
         ValidationUtil.hasAdminRights(userId,customerService);
-        return orderService.getTodayShipping(UUID.fromString(userId),customerService,itemGroupMapper);
+        return orderService.getTodayShipping(UUID.fromString(userId),itemGroupMapper);
     }
 }

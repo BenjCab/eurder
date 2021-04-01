@@ -1,6 +1,5 @@
 package com.switchfully.eurder.domain;
 
-import com.switchfully.eurder.api.Dtos.Order.OrderController;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 public class User {
     final static Logger logger = LoggerFactory.getLogger(User.class);

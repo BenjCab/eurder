@@ -1,5 +1,8 @@
-package com.switchfully.eurder.api.Dtos.Customer;
+package com.switchfully.eurder.api.controller;
 
+import com.switchfully.eurder.api.Dtos.Customer.CreateCustomerDto;
+import com.switchfully.eurder.api.Dtos.Customer.CustomerDto;
+import com.switchfully.eurder.api.Dtos.Customer.CustomerMapper;
 import com.switchfully.eurder.infrastructure.utils.ValidationUtil;
 import com.switchfully.eurder.service.CustomerService;
 import org.slf4j.Logger;

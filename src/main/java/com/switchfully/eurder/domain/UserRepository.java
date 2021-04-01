@@ -1,8 +1,5 @@
 package com.switchfully.eurder.domain;
 
-import com.switchfully.eurder.api.Dtos.Order.OrderController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
